@@ -55,7 +55,7 @@ Nexora is a **Java Spring Boot Full Stack Web Application** for managing persona
 | Update Contact | ![Update](screenshots/UpdateContact.png) |
 | Search by Name | ![Search Name](screenshots/Search_name.png) |
 | Search by Phone | ![Search Phone](screenshots/Search_phone.png) |
-| Search by Email | ![Search Email](screenshots/Search_email.png) |
+| Search by Email | ![Search Email](screenshots/Search_Email.png) |
 
 ---
 
