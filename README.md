@@ -38,7 +38,7 @@ Nexora is a **Java Spring Boot Full Stack Web Application** for managing persona
 | Profile - Light Mode | ![Light Mode Profile](screenshots/Profile_LightMode.png) |
 | Add Contact | ![Add Contact](screenshots/AddContact.png) |
 | Sidebar | ![Sidebar](screenshots/Sidebar.png) |
-| Navbar Profile Dropdown | ![Profile Dropdown](screenshots/Profile_Dropdown(2).png) |
+| Navbar Profile Dropdown | ![Profile Dropdown](screenshots/Profile-Dropdown.png) |
 | MoblieView Dropdown | ![MobileView Dropdown](screenshots/MobileViewDropdown.png) |
 
 
