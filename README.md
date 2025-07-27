@@ -37,11 +37,14 @@ Nexora is a **Java Spring Boot Full Stack Web Application** for managing persona
 | Profile - Mobile View | ![Mobile Profile](screenshots/Profile_MobileView.png) |
 | Profile - Light Mode | ![Light Mode Profile](screenshots/Profile_LightMode.png) |
 | Add Contact | ![Add Contact](screenshots/AddContact.png) |
-| Sidebar | ![Sidebar](screenshots/Sidebar.png) |
-| Navbar Profile Dropdown | ![Profile Dropdown](screenshots/Profile_Dropdown.png) |
-
-> Navbar Profile Dropdown shows user's email with logout option.
 > Using Add Contact users can directly submit contact details to the database using the form with validation.
+
+| Sidebar | ![Sidebar](screenshots/Sidebar.png) |
+| Navbar Profile Dropdown | ![Profile Dropdown](screenshots/MobileViewDropdown.png) |
+| MoblieView Dropdown | ![MobileView Dropdown](screenshots/Profile_Dropdown.png) |
+
+
+
 
 ---
 
