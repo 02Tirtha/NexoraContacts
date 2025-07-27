@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" th:insert="~{base::parent(~{::title},~{::#content},~{::script},~{})}" class="light">
+<head>
+    <title>Nexora - Smart Contact Manager</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for smooth transitions and initial theme setup */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .light .bg-gradient-light {
+            background-image: linear-gradient(to bottom right, #e0f2fe, #eef2ff);
+        }
+        .dark .bg-gradient-dark {
+            background-image: linear-gradient(to bottom right, #1a202c, #2d3748);
+        }
+
+        /* Animation Keyframes */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-slide-in {
+            animation: slideInUp 0.7s ease-out forwards;
+        }
+
+        .initial-hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+
+       <section 
+            class="
+                min-h-[calc(100vh-160px)]  
+                flex flex-col justify-center items-center text-center 
+                p-6 mt-32 mx-4 md:mx-auto max-w-7xl  
+                rounded-lg shadow-lg
+                bg-gray-100
+                dark:bg-gray-800 
+                transition-colors duration-300 ease-in-out
+                initial-hidden
+            "
+        >
+            <h1 class="text-5xl md:text-6xl font-extrabold text-indigo-800 dark:text-indigo-300 mb-6 leading-tight initial-hidden" style="animation-delay: 0.2s;">
+                Nexora: Your Smart Contact Manager
+            </h1>
+
+            <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mb-10 initial-hidden" style="animation-delay: 0.4s;">
+                A robust full-stack web application designed for efficient and secure personal contact management.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 initial-hidden" style="animation-delay: 0.6s;">
+                <a 
+                    href="/exploreFeature" 
+                    class="
+                        bg-indigo-600 hover:bg-indigo-700 
+                        text-white font-bold py-3 px-8 rounded-full 
+                        shadow-lg transform hover:scale-105 
+                        transition-all duration-300 text-lg
+                    "
+                >
+                    Explore Features
+                </a>
+
+                <a href="/contact" class="bg-white border-2 border-indigo-600 text-indigo-600 dark:bg-gray-800 dark:border-indigo-400 dark:text-indigo-400 font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 text-lg">
+                    Get in Touch
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <script th:src="@{'/script/script.js'}"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('.initial-hidden').forEach((el, index) => {
+                setTimeout(() => {
+                    el.classList.add('animate-slide-in');
+                }, index * 200);
+            });
+        });
+
+        console.log("Nexora Home Page Loaded");
+
+        themeToggleBtn?.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    applyTheme('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    applyTheme('light');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                if (document.documentElement.classList.contains('dark')) {
+                    applyTheme('light');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    applyTheme('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

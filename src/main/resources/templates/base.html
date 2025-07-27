@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en" th:fragment="parent(title, content, script, style)">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:replace="${title}">Base</title>
+  <style th:replace="${style}"></style>
+
+  <!-- Set theme from localStorage BEFORE loading CSS -->
+  <script>
+    const theme = localStorage.getItem("theme") || "light";
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  </script>
+  
+
+  <link href="/css/output.css" rel="stylesheet">
+</head> 
+
+<body class="bg-white dark:bg-gray-900 text-black dark:text-white min-h-screen transition-colors duration-500">
+  <!-- NavBar -->
+ <!-- Show user_navbar only if explicitly told -->
+<div th:if="${showUserNavbar}">
+  <div th:replace="~{user/user_navbar :: user_navbar}"></div>
+</div>
+
+<!-- Otherwise show normal navbar -->
+<div th:unless="${showUserNavbar}">
+  <div th:replace="~{navbar :: navbar}"></div>
+</div>
+
+<div id="mainContent" class="transition-all duration-300">
+  <div th:insert="${content}" class="h-[1000px] mt-17 ">Default content</div>
+</div>
+
+<div th:insert="~{login::Login}"></div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const showBtn = document.querySelector('[data-drawer-show], [data-drawer-toggle]');
+  const hideBtn = document.querySelector('[data-drawer-hide]');
+  const mainContent = document.getElementById("mainContent"); 
+  const logoWrapper = document.getElementById("logoWrapper");
+  const drawer = document.getElementById("drawer-navigation");
+
+  if (!mainContent || !logoWrapper || !drawer) {
+    console.warn("Missing #mainContent, #logoWrapper, or #drawer-navigation");
+    return;
+  }
+
+  let isDrawerOpen = false;
+
+  // Open drawer
+  if (showBtn) {
+    showBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); // prevent triggering outside click
+      drawer.classList.remove("-translate-x-full");
+      mainContent.classList.add("ml-64");
+      logoWrapper?.classList.add("ml-20");
+      isDrawerOpen = true;
+    });
+  }
+
+  // Close drawer on close icon
+  if (hideBtn) {
+    hideBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      drawer.classList.add("-translate-x-full");
+      mainContent.classList.remove("ml-64");
+      logoWrapper?.classList.remove("ml-20");
+      isDrawerOpen = false;
+    });
+  }
+
+  // Outside click
+  document.addEventListener("click", function (e) {
+    const isClickInsideDrawer = drawer.contains(e.target);
+    const isClickOnToggle = showBtn.contains(e.target);
+
+    if (isDrawerOpen && !isClickInsideDrawer && !isClickOnToggle) {
+      drawer.classList.add("-translate-x-full");
+      mainContent.classList.remove("ml-64");
+      logoWrapper?.classList.remove("ml-20");
+      isDrawerOpen = false;
+    }
+  });
+
+});
+
+    
+  </script>
+  <script th:replace="${script}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script th:src="@{'/script/script.js'}"></script>
+</body>
+</html>

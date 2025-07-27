@@ -1,0 +1,189 @@
+
+<link href="/css/output.css" rel="stylesheet">
+<style>
+  input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important; /* Tailwind's bg-gray-800 */
+    -webkit-text-fill-color: white !important;
+    transition: background-color 4000s ease-in-out 0s;
+  }
+
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+    -webkit-text-fill-color: white !important;
+  }
+</style>
+
+<!-- Nav Bar -->
+   <div th:insert="~{navbar::navbar}"></div>
+
+<!-- Login -->
+ <div th:insert="~{login::Login}"></div>
+  
+<section class="bg-gray-100 dark:bg-gray-900 min-h-screen flex items-center justify-center px-4">
+  <div class="w-full max-w-md bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+    <!-- Message Box (left side) -->
+    <div class="mb-4">  </div>
+    <div data-th-replace="~{message::msgType}"></div>
+
+    <h2 class="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">Create your account</h2>
+
+    <form 
+    class="space-y-5 "
+    th:object="${userForm}" 
+    id="signupForm" 
+    th:action="@{/do_register}" 
+    method="post">
+      <!-- First + Last Name -->
+      <div class="grid md:grid-cols-2 md:gap-4 gap-2">
+        <div class="relative z-0 w-full group">
+          <input 
+          type="text" 
+          id="first_name" 
+          th:field="*{First_Name}"
+          name="first_name" 
+          placeholder=" " required
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+          <label for="first_name"
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">First
+            Name</label >
+        </div>
+
+        <div class="relative z-0 w-full group">
+          <input 
+          type="text" 
+          id="last_name" 
+          th:field="*{Last_Name}"
+          name="last_name" 
+          placeholder=" " required
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+          <label for="last_name"
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Last
+            Name</label>
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="relative z-0 w-full group">
+        <input 
+        type="email" 
+        id="email"
+        th:field="*{Email}"
+        name="email" 
+        placeholder=" " required
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+        <label for="email"
+          class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Email
+          Address</label>
+      </div>
+
+      <!-- Phone -->
+      
+        <div class="relative z-0 w-full group">
+          <input 
+          type="tel" 
+          id="phone"
+          th:field="*{phone_num}" 
+          name="phone" 
+          placeholder=" " required
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+          <label for="phone"
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Phone
+            Number</label>
+      </div>
+      <!-- phone error -->
+      <div id="phoneError" class="text-red-500 text-sm mt-1"></div>
+
+      <!-- Password -->
+      <div class="relative z-0 w-full group">
+        <input 
+        type="password" 
+        id="password" 
+        th:field="*{Password}"
+        name="password" 
+        placeholder=" " required
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+        <label for="password"
+          class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Password</label>
+      </div>
+      <!-- Password Error -->
+      <div id="passwordError" class="text-red-500 text-sm mt-1"></div>
+
+
+      <!-- Confirm Password -->
+      <div class="relative z-0 w-full group">
+        <input 
+        type="password" 
+        id="confirm_password" 
+        th:field="*{Confirm_Password}"
+        name="confirm_password" 
+        placeholder=" " required
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 focus:outline-none focus:ring-0 focus:border-blue-600 peer" />
+        <label for="confirm_password"
+          class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">Confirm
+          Password</label>
+      </div>
+      <!-- Confirm Password Error -->
+      <div id="confirmPasswordError" class="text-red-500 text-sm mt-1"></div>
+
+
+      <!-- Submit -->
+      <button type="submit"
+        class="w-full bg-indigo-600 hover:bg-purple-700 text-white font-medium py-2.5 px-4 rounded-lg transition-colors duration-300">
+        Sign Up
+      </button>
+
+     
+    </form>
+  </div>
+</section>
+
+<script>
+  document.getElementById("signupForm").addEventListener("submit", function (e) {
+    const password = document.getElementById("password");
+    const confirmPassword = document.getElementById("confirm_password");
+    const phone = document.getElementById("phone");
+
+    const phoneError = document.getElementById("phoneError");
+    const passwordError = document.getElementById("passwordError");
+    const confirmPasswordError = document.getElementById("confirmPasswordError");
+
+    let isValid = true;
+
+    // Clear previous error messages
+    phoneError.textContent = "";
+    passwordError.textContent = "";
+    confirmPasswordError.textContent = "";
+    phone.classList.remove("border-red-500");
+    password.classList.remove("border-red-500");
+    confirmPassword.classList.remove("border-red-500");
+
+    // Validate phone
+    if (!/^\d{10}$/.test(phone.value.trim())) {
+      phoneError.textContent = "Phone number must be exactly 10 digits.";
+      phone.classList.add("border-red-500");
+      isValid = false;
+    }
+
+    // Validate password length
+    if (password.value.length < 8 || !/[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password.value)) {
+      passwordError.textContent = "Password must be at least 8 characters long and include a special character.";
+      password.classList.add("border-red-500");
+      isValid = false;
+    }
+
+    // Check if passwords match
+    if (password.value !== confirmPassword.value) {
+      confirmPasswordError.textContent = "Password and Confirm Password do not match.";
+      confirmPassword.classList.add("border-red-500");
+      isValid = false;
+    }
+
+    // Stop form submission
+    if (!isValid) {
+      e.preventDefault();
+    }
+  });
+</script>
+
+<script th:src="@{'/script/script.js'}"></script>

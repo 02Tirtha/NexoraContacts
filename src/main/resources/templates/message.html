@@ -1,0 +1,38 @@
+<div 
+     th:if="${session.message !=null}"
+     th:object="${session.message}"
+     th:classappend="' text-' + *{type} + '-800 border border-' + *{type} + 
+                     '-300 rounded-lg bg-' + *{type} + '-50 dark:bg-gray-800 dark:text-' + 
+                     *{type} + '-400 dark:border-' + *{type} + '-800'"
+     class="flex items-center p-4 mb-4 text-sm border"
+     role="alert">
+  <svg class="shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+    <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+  </svg>
+  <span class="sr-only">Info</span>
+  <div >
+    <span class="font-medium"></span> <span th:text="*{content}"> </span>
+  </div>
+</div>
+
+<!-- fragments/message.html -->
+<div th:fragment="msgType"
+     th:if="${flashMessage != null}"
+     th:with="msg=${flashMessage}">
+  <div th:class= "'flex items-center p-4 mb-4 text-sm border rounded-lg bg-' + ${msg.type} +
+               '-50 text-' + ${msg.type} + '-800 border-' + ${msg.type} +
+               '-300 dark:bg-' + ${msg.type} + '-300 dark:text-' + ${msg.type} +
+               '-400 dark:border-' + ${msg.type} + '-800'">
+      <svg class="shrink-0 inline w-4 h-4 me-3" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 .5…"/>
+    </svg>
+    <span th:text="${msg.content}">Success!</span>
+  </div>
+</div>
+
+<script th:if="${flashMessage != null}">
+  setTimeout(() => {
+    const box = document.querySelector('[role="alert"]');
+    if (box) box.style.display = 'none';
+  }, 4000);
+</script>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" th:insert="~{base::parent(~{::title},~{::#content},~{::script},~{})}" class="light">
+<head>
+  <title>Explore Features - Nexora</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="content">
+  <section class="min-h-screen py-16 px-4 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <div class="max-w-6xl mx-auto text-center">
+      <h1 class="text-5xl font-extrabold text-indigo-800 dark:text-indigo-300 mb-6">
+        Discover Nexora’s Features
+      </h1>
+      <p class="text-xl text-gray-700 dark:text-gray-300 mb-12">
+        Everything you need to manage your contacts efficiently and securely.
+      </p>
+
+      <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <!-- Feature 1 -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div class="text-indigo-600 dark:text-indigo-400 text-4xl mb-4">
+            <i class="fas fa-address-book"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Centralized Contact Management</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Organize all your personal and professional contacts in one place — searchable and always accessible.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div class="text-indigo-600 dark:text-indigo-400 text-4xl mb-4">
+            <i class="fas fa-lock"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Secure & Private</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Your data is encrypted and kept safe. We prioritize your privacy at every step.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+  <div class="text-indigo-600 dark:text-indigo-400 text-4xl mb-4">
+    <i class="fas fa-star"></i>
+  </div>
+  <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Favorite Contacts</h3>
+  <p class="text-gray-600 dark:text-gray-300">
+    Easily mark your most important contacts as favorites so you can access them quickly whenever you need.
+  </p>
+</div>
+
+
+        <!-- Feature 4 -->
+        <!-- <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div class="text-indigo-600 dark:text-indigo-400 text-4xl mb-4">
+            <i class="fas fa-pencil-alt"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Personal Notes</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Attach notes to each contact so you never forget the details of your last conversation.
+          </p>
+        </div> -->
+
+        <!-- Feature 5 -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div class="text-indigo-600 dark:text-indigo-400 text-4xl mb-4">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Responsive Design</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Access your contacts from any device — laptop, tablet, or mobile — with a seamless experience.
+          </p>
+        </div>
+
+        <!-- Feature 6 -->
+        <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow hover:shadow-lg transition">
+          <div class="text-indigo-600 dark:text-indigo-400 text-4xl mb-4">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">Easy to Use</h3>
+          <p class="text-gray-600 dark:text-gray-300">
+            Simple, intuitive, and clutter-free interface that anyone can use without training.
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-12">
+        <a href="/signup" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 text-lg">
+          Get Started Now
+        </a>
+      </div>
+    </div>
+  </section>
+</div>
+  <script th:src="@{'/script/script.js'}"></script>
+
+</body>
+</html>

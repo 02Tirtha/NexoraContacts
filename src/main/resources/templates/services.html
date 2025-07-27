@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" th:insert="~{base::parent(~{::title},~{::#content},~{::script},~{})}" class="light">
+<head>
+    <title>Services</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for smooth transitions and initial theme setup */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .light .bg-gradient-light-services {
+            background-image: linear-gradient(to top right, #f0f4f8, #eef2f6); /* Light blue-gray to very light gray */
+        }
+        .dark .bg-gradient-dark-services {
+            background-image: linear-gradient(to bottom left, #1a202c, #2d3748); /* Dark gray to darker gray */
+        }
+
+        /* Animation Keyframes */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Apply animation to elements when 'animate-in' class is added */
+        .animate-slide-in {
+            animation: slideInUp 0.7s ease-out forwards;
+        }
+
+        /* Initial state for elements that will animate in */
+        .initial-hidden {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+    </style>
+</head>
+<body>
+    <div id="content">
+        <!-- Dark/Light Mode Toggle -->
+        <div class="absolute top-4 right-4 z-50">
+           
+        </div>
+
+        <section class="min-h-[calc(100vh-80px)] py-16 px-4 bg-gradient-light-services dark:bg-gradient-dark-services transition-colors duration-300 ease-in-out">
+            <div class="max-w-7xl mx-auto">
+                <h1 class="text-5xl md:text-6xl font-extrabold text-center text-indigo-800 dark:text-indigo-300 mb-6 initial-hidden">
+                    Our Comprehensive Services
+                </h1>
+                <p class="text-xl md:text-2xl text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-16 initial-hidden" style="animation-delay: 0.2s;">
+                    Nexora offers a suite of services designed to revolutionize how you manage your personal and professional connections.
+                </p>
+
+                <!-- Service Category: Core Contact Management -->
+                <div class="mb-20">
+                    <h2 class="text-4xl font-bold text-indigo-700 dark:text-indigo-300 mb-10 text-center initial-hidden" style="animation-delay: 0.4s;">
+                        Core Contact Management
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                        <!-- Service 1: Centralized Database -->
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 0.6s;">
+                            <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Unified Contact Database</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Securely store and organize all your contacts in one central hub. Access names, numbers and emails instantly.
+                            </p>
+                        </div>
+
+                        <!-- Service 2: Smart Organization & Segmentation -->
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 0.8s;">
+                            <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Smart Organization & Segmentation</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Categorize contacts with custom tags and groups. Filter and find exactly who you need with ease.
+                            </p>
+                        </div>
+
+                        <!-- Service 3: Seamless Import & Export -->
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 1.0s;">
+                            <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+                                <i class="fas fa-file-import"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Seamless Import & Export</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Effortlessly migrate your existing contacts into Nexora. </p>
+                        </div>
+                    </div>
+                </div>
+
+
+        
+    
+<!-- Service Category: Simple & Secure Contact Management -->
+<div class="mb-20">
+  <h2 class="text-4xl font-bold text-indigo-700 dark:text-indigo-300 mb-10 text-center initial-hidden" style="animation-delay: 1.2s;">
+    Simple & Secure Contact Management
+  </h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+  
+    <!-- Service: Add & View Contacts -->
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 1.4s;">
+      <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+        <i class="fas fa-address-book"></i>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Add & View Contacts</h3>
+      <p class="text-gray-600 dark:text-gray-300">
+        Easily create and manage your contact list, complete with names, emails, phone numbers, LinkedIn and Facebook profiles — all in one place.
+      </p>
+    </div>
+
+    <!-- Service: Favourite Contacts -->
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 1.6s;">
+      <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+        <i class="fas fa-star"></i>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Mark Favourite Contacts</h3>
+      <p class="text-gray-600 dark:text-gray-300">
+        Highlight your most important connections by marking them as favourites for quicker access anytime.
+      </p>
+    </div>
+
+    <!-- Service: Linked Profiles -->
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 1.8s;">
+      <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+        <i class="fas fa-user-friends"></i>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Linked Profiles</h3>
+      <p class="text-gray-600 dark:text-gray-300">
+        Save and view LinkedIn and Facebook links alongside your contacts, keeping your online network at your fingertips.
+      </p>
+    </div>
+
+    <!-- Service: Dashboard & Profile -->
+    <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 2.0s;">
+      <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+        <i class="fas fa-tachometer-alt"></i>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Dashboard & Profile</h3>
+      <p class="text-gray-600 dark:text-gray-300">
+        Get an overview of your activity through a personalized dashboard and update your profile settings securely.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+
+                       
+                    </div>
+                </div>
+
+                <!-- Service Category: Security & Accessibility -->
+                <div class="mb-20">
+                    <h2 class="text-4xl font-bold text-indigo-700 dark:text-indigo-300 mb-10 text-center initial-hidden" style="animation-delay: 1.8s;">
+                        Security & Accessibility
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <!-- Service 6: Robust Data Security -->
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 2.0s;">
+                            <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Robust Data Security</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Your privacy is our priority. We utilize industry-leading encryption and security protocols to protect your sensitive contact information.
+                            </p>
+                        </div>
+
+                        <!-- Service 7: Cloud-Based Access (Anywhere) -->
+                        <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 initial-hidden" style="animation-delay: 2.2s;">
+                            <div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+                                <i class="fas fa-cloud"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">Cloud-Based Access</h3>
+                            <p class="text-gray-600 dark:text-gray-300">
+                                Access your contacts securely from any device, anywhere in the world. Your network is always at your fingertips.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+        </section>
+
+    </div>
+     <script th:src="@{'/script/script.js'}"></script>
+
+</body>
+</html>

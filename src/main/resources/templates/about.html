@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" th:insert="~{base::parent(~{::title},~{::#content},~{::script},~{})}" class="light">
+<head>
+<title>About Us</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<style>
+body {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+.light .bg-gradient-light-about {
+    background-image: linear-gradient(to bottom right, #edf2f7, #e2e8f0);
+}
+.dark .bg-gradient-dark-about {
+    background-image: linear-gradient(to top left, #2d3748, #1a202c);
+}
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animate-slide-in {
+    animation: slideInUp 0.7s ease-out forwards;
+}
+.initial-hidden {
+    opacity: 0;
+    transform: translateY(20px);
+}
+</style>
+</head>
+
+<body>
+<div id="content">
+<section class="min-h-[calc(100vh-80px)] py-16 px-4 bg-gradient-light-about dark:bg-gradient-dark-about transition-colors duration-300 ease-in-out">
+<div class="max-w-6xl mx-auto">
+
+<h1 class="text-5xl md:text-6xl font-extrabold text-center text-indigo-800 dark:text-indigo-300 mb-6 initial-hidden">
+About Nexora
+</h1>
+
+<p class="text-xl md:text-2xl text-center text-gray-700 dark:text-gray-300 max-w-3xl mx-auto mb-16 initial-hidden">
+Your trusted partner in simple and secure contact management.
+</p>
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl mb-12 initial-hidden">
+<h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-6 text-center">My Story</h2>
+<p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-justify">
+In today’s connected world, keeping track of your contacts shouldn’t feel complicated. Nexora was born from the idea that managing your relationships can be easy, organized, and stress-free. 
+</p>
+<p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed text-justify mt-4">
+I noticed that many people had their contacts scattered — across phones, emails, and notepads — making it hard to stay in touch. I set out to build a single, secure platform to keep your contacts organized and accessible wherever you go.
+</p>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl text-center initial-hidden">
+<div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+<i class="fas fa-bullseye"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">My Mission</h3>
+<p class="text-gray-600 dark:text-gray-300">
+To provide a clean, user-friendly and secure contact management solution for individuals.
+</p>
+</div>
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl text-center initial-hidden">
+<div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+<i class="fas fa-lightbulb"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">My Vision</h3>
+<p class="text-gray-600 dark:text-gray-300">
+To help everyone stay connected, effortlessly — no matter how big or small their network.
+</p>
+</div>
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl text-center initial-hidden">
+<div class="text-indigo-600 dark:text-indigo-400 mb-4 text-5xl">
+<i class="fas fa-hands-helping"></i>
+</div>
+<h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-3">My Values</h3>
+<ul class="text-gray-600 dark:text-gray-300 list-disc list-inside text-left mx-auto max-w-xs">
+<li><strong>Security:</strong> Your data is private and protected.</li>
+<li><strong>Ease of Use:</strong> Simple and intuitive design.</li>
+<li><strong>Transparency:</strong> Honest and clear communication.</li>
+<li><strong>Reliability:</strong> A platform you can depend on.</li>
+</ul>
+</div>
+</div>
+
+<div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-xl mb-12 initial-hidden">
+<h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-6 text-center">Why Choose Nexora?</h2>
+<ul class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed space-y-3">
+<li class="flex items-start">
+<i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-xl"></i>
+<div>
+<strong class="text-gray-900 dark:text-white">Intuitive Interface:</strong> Nexora is designed for simplicity, ensuring a smooth and enjoyable user experience from day one.
+</div>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-xl"></i>
+<div>
+<strong class="text-gray-900 dark:text-white">Robust Security:</strong> I employ advanced security measures to keep your valuable contact data safe and private.
+</div>
+</li>
+<li class="flex items-start">
+<i class="fas fa-check-circle text-green-500 mr-3 mt-1 text-xl"></i>
+<div>
+<strong class="text-gray-900 dark:text-white">Cross-Platform Compatibility:</strong> Whether on desktop, tablet, or mobile, Nexora adapts flawlessly to your device.
+</div>
+</li>
+</ul>
+</div>
+
+</div>
+</section>
+</div>
+
+<script th:src="@{'/script/script.js'}"></script>
+
+<script>
+// animate each .initial-hidden with delay
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.initial-hidden').forEach((el, index) => {
+        setTimeout(() => {
+            el.classList.remove('initial-hidden');
+            el.classList.add('animate-slide-in');
+        }, index * 200);
+    });
+});
+</script>
+
+</body>
+</html>

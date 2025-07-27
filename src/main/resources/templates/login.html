@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" th:fragment="Login">
+<head>
+   <link href="/css/output.css" rel="stylesheet">
+   <style>
+      input:-webkit-autofill {
+        background-color: transparent !important;
+        -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+        -webkit-text-fill-color: white !important;
+        transition: background-color 4000s ease-in-out 0s;
+      }
+
+      input:-webkit-autofill:focus {
+        -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+        -webkit-text-fill-color: white !important;
+      }
+
+      .or-divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 20px 0;
+        width: 100%;
+      }
+
+      .or-divider::before,
+      .or-divider::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background-color: #6b6b6b;
+      }
+
+      .or-divider span {
+        margin: 0 10px;
+        color: #a4a4a4;
+        font-size: 14px;
+        white-space: nowrap;
+      }
+   </style>
+</head>
+<body>
+  <!-- Login Modal -->
+  <div id="loginModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/30 backdrop-blur-sm">
+    <div class="relative p-4 sm:max-w-2xl">
+      <!-- Close Button -->
+      <button id="closeLoginModal" class="absolute top-4 right-4 text-gray-300 hover:text-white"></button>
+<div th:if="${param.error} == 'disabled'" class="text-red-600">
+    Your account is not yet enabled. Please contact support.
+</div>
+
+      <!-- Modal Content Wrapper -->
+      <form action="/perform-login" method="post" 
+            class="w-[400px] bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col justify-center">
+
+        <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Login to Your Account</h2>
+
+        <!-- Email Input -->
+        <div class="relative z-0 w-full group mb-5">
+          <input type="email" name="email" id="login_email" required autocomplete="email"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none 
+                   dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 
+                   focus:border-blue-600 peer"
+            placeholder=" " />
+          <label for="login_email"
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-1 -z-10 origin-[0] 
+                   peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 
+                   peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
+            Email address
+          </label>
+        </div>
+
+        <!-- Password Input -->
+        <div class="relative z-0 w-full group mb-6">
+          <input type="password" name="password" id="login_password" required
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none 
+                   dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 
+                   focus:border-blue-600 peer"
+            placeholder=" " />
+          <label for="login_password"
+            class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] 
+                   peer-focus:start-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 
+                   peer-focus:scale-75 peer-focus:-translate-y-6 peer-focus:text-blue-600 peer-focus:dark:text-blue-500">
+            Password
+          </label>
+        </div>
+
+       
+
+        <!-- Error -->
+        <div th:if="${param.error}" class="text-red-500 text-sm text-center mb-3">
+          Invalid email or password.
+        </div>
+
+        <!-- Sign In -->
+        <button type="submit"
+          class="mb-2 mt-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
+                 font-medium rounded-lg px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Sign In
+        </button>
+
+        <!-- OR Divider -->
+        <div class="or-divider"><span>OR</span></div>
+
+        <!-- Google OAuth Button -->
+        <div class="flex justify-center mt-3">
+          <a href="/oauth2/authorization/google"
+             class="bg-white text-gray-800 
+                  dark:bg-gray-800 dark:text-white 
+                  border-2 border-gray-300 dark:border-gray-600 
+                  hover:bg-gray-100 dark:hover:bg-gray-700 
+                  focus:ring-4 focus:outline-none 
+                  focus:ring-gray-200 dark:focus:ring-gray-500 
+                  font-medium rounded-lg text-sm px-5 py-2.5 
+                  inline-flex items-center 
+                  transition-all duration-300 ease-in-out">
+
+            <svg class="w-4 h-4 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+              fill="currentColor" viewBox="0 0 18 19">
+              <path fill-rule="evenodd"
+                d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 
+                   8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 
+                   0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 
+                   9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 
+                   5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 
+                   1.09.088 1.636-.086 5.053-3.463 8.449-8.4 
+                   8.449l-.186-.002Z"
+                clip-rule="evenodd" />
+            </svg>
+            Sign in with Google
+          </a>
+        </div>
+
+        <!-- Sign Up Link -->
+        <p class="text-sm font-light text-gray-500 dark:text-gray-400 mt-6 text-center">
+          Don’t have an account yet?
+          <a th:href="@{/signup}" class="font-medium text-blue-600 hover:underline dark:text-blue-400">Sign up</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+<script>
+   // Login Modal Open/Close Logic
+  document.addEventListener("DOMContentLoaded", function () {
+    const openModalBtn = document.getElementById("openLoginModal");
+    const closeModalBtn = document.getElementById("closeLoginModal");
+    const loginModal = document.getElementById("loginModal");
+
+    if (openModalBtn && closeModalBtn && loginModal) {
+      // Open the modal
+      openModalBtn.addEventListener("click", () => {
+        loginModal.classList.remove("hidden");
+      });
+
+      // Close the modal
+      closeModalBtn.addEventListener("click", () => {
+        loginModal.classList.add("hidden");
+      });
+
+      // Optional: Close modal when clicking outside the modal content
+      loginModal.addEventListener("click", (e) => {
+        if (e.target === loginModal) {
+          loginModal.classList.add("hidden");
+        }
+      });
+
+      // Optional: Close modal with Escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          loginModal.classList.add("hidden");
+        }
+      });
+    }
+  });
+function validateContactForm() {
+  let isValid = true;
+
+  // Clear previous errors
+  document.getElementById("error-name").innerText = "";
+  document.getElementById("error-email").innerText = "";
+  document.getElementById("error-phone").innerText = "";
+  document.getElementById("error-address").innerText = "";
+
+  // Values
+  const name = document.getElementById("contact-name").value.trim();
+  const email = document.getElementById("contact-email").value.trim();
+  const phone = document.getElementById("contact-phone").value.trim();
+  const address = document.getElementById("address").value.trim();
+
+  // Name
+  if (name === "") {
+    document.getElementById("error-name").innerText = "Name is required.";
+    isValid = false;
+  }
+
+  // Email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (email === "") {
+    document.getElementById("error-email").innerText = "Email is required.";
+    isValid = false;
+  } else if (!emailRegex.test(email)) {
+    document.getElementById("error-email").innerText = "Invalid email format.";
+    isValid = false;
+  }
+
+  // Phone
+  const phoneRegex = /^[0-9]{10}$/;
+  if (phone === "") {
+    document.getElementById("error-phone").innerText = "Phone number is required.";
+    isValid = false;
+  } else if (!phoneRegex.test(phone)) {
+    document.getElementById("error-phone").innerText = "Phone number must be 10 digits.";
+    isValid = false;
+  }
+
+  // Address
+  if (address === "") {
+    document.getElementById("error-address").innerText = "Address is required.";
+    isValid = false;
+  }
+
+  return isValid;
+}
+</script>
+
+</body>
+</html>
