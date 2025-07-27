@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::title},~{::#mainContent},~{::script},~{})}"  >
+<head>
+     <title th:text="${name}+ ' | Dashboard'">Dashboard Page</title>
+</head>
+<body>
+    <div id="mainContent" class="transition-all duration-300 p-4">
+    <div class="pt-20 min-h-screen flex items-center justify-center">
+      <div class="w-full max-w-4xl px-4">
+        <div class="bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:shadow-none dark:border-none rounded-lg p-8">
+          <!-- Success Message -->
+<div th:if="${success}" class="mb-4 text-center text-green-700 bg-green-100 border border-green-400 text-sm rounded-lg px-4 py-3 dark:bg-green-900 dark:text-green-200 dark:border-green-800">
+  <span th:text="${success}"></span>
+</div>
+
+          <!-- Header -->
+          <h2 class="text-2xl font-bold text-center mb-8">Add New Contact</h2>
+          
+  <!-- Form -->
+          <form action=""
+          data-th-action="@{'/user/contacts/add'}"
+          data-th-object="${contactForm}"
+          method="post"
+          onsubmit="return validateContactForm()"
+          enctype="multipart/form-data"
+          class="space-y-6">
+
+            <!-- Contact Name -->
+            <div>
+              <label for="contact-name" class="block mb-2 text-balance font-semibold">Contact Name</label>
+              <div class="flex">
+                <span class="inline-flex items-center px-3 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-r-0 border-gray-300 dark:border-gray-600 rounded-l-md">
+                  <!-- Icon -->
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                  </svg>
+                </span>
+                <input type="text" id="contact-name" data-th-field="*{name}" placeholder="elonmusk"
+                  class="w-full rounded-r-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white p-2.5 text-sm  hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600 focus:ring-blue-500 focus:border-blue-500">
+              </div>
+                <span id="error-name" class="text-red-500 text-sm mt-1"></span>
+            </div>
+
+            <!-- Contact Email -->
+            <div>
+              <label for="contact-email" class="block mb-2 text-balance font-semibold">Contact Email</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 16">
+                    <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
+                    <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
+                  </svg>
+                </div>
+                <input type="email" id="contact-email" data-th-field="*{email}" placeholder="name@flowbite.com"
+                  class="w-full pl-10 p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white  hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600 focus:ring-blue-500 focus:border-blue-500">
+              </div>
+                <span id="error-email" class="text-red-500 text-sm mt-1"></span>
+
+            </div>
+
+            <!-- Contact Phone -->
+            <div>
+              <label for="contact-phone" class="block mb-2 text-balance font-semibold">Contact Phone</label>
+              <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                    <path fill-rule="evenodd"
+                      d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
+                      clip-rule="evenodd" />
+                  </svg>
+                </div>
+                <input type="text" id="contact-phone" data-th-field="*{phoneNum}" placeholder="9120324894"
+                  class="w-full pl-10 p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white  hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600 focus:ring-blue-500 focus:border-blue-500">
+              </div>
+                <span id="error-phone" class="text-red-500 text-sm mt-1"></span>
+
+            </div>
+
+            <!-- Address -->
+            <div>
+              <label for="address" class="block mb-2 text-balance font-semibold">Address</label>
+              <textarea id="address" rows="4" data-th-field="*{address}"
+                class="block w-full p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white  hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600 focus:ring-blue-500 focus:border-blue-500"
+                placeholder="Write address of the contact here..."></textarea>
+              <span id="error-address" class="text-red-500 text-sm mt-1"></span>
+
+              </div>
+
+            <!-- Upload Picture -->
+            <!-- <div>
+              <p class="font-semibold mb-2">Upload Picture</p>
+              <label for="dropzone-file"
+                class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:bg-gray-700 border-gray-300 dark:border-gray-600 hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6 text-gray-400">
+                  <svg class="w-6 h-6 mb-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                  </svg>
+                  <p class="text-sm"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                  <p class="text-xs">SVG, PNG, JPG (max. 800x400px)</p>
+                </div>
+                <input id="dropzone-file" type="file" data-th-field="*{contactImage}" class="hidden" />
+              </label>
+            </div> -->
+
+           <!-- Links Section -->
+            <div class="mb-6">
+              <div class="flex justify-between">
+                <!-- Facebook URL -->
+                <div class="w-full mr-3">
+                  <label for="facebook-url" class="block mb-2 text-balance font-semibold">Facebook Follow URL</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                      <!-- Facebook Icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.001 2C6.47813 2 2.00098 6.47715 2.00098 12C2.00098 16.9913 5.65783 21.1283 10.4385 21.8785V14.8906H7.89941V12H10.4385V9.79688C10.4385 7.29063 11.9314 5.90625 14.2156 5.90625C15.3097 5.90625 16.4541 6.10156 16.4541 6.10156V8.5625H15.1931C13.9509 8.5625 13.5635 9.33334 13.5635 10.1242V12H16.3369L15.8936 14.8906H13.5635V21.8785C18.3441 21.1283 22.001 16.9913 22.001 12C22.001 6.47715 17.5238 2 12.001 2Z"/>
+                      </svg>
+                    </div>
+                    <input type="text" id="facebook-url" data-th-field="*{webLink}" placeholder="https://www.facebook.com"
+                      class="w-full pl-10 p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500">
+                  </div>
+                </div>
+
+                <!-- LinkedIn URL -->
+                <div class="w-full ml-3">
+                  <label for="linkedin-url" class="block mb-2 text-balance font-semibold">LinkedIn Follow URL</label>
+                  <div class="relative">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
+                      <!-- LinkedIn Icon -->
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="30" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.3362 18.339H15.6707V14.1622C15.6707 13.1662 15.6505 11.8845 14.2817 11.8845C12.892 11.8845 12.6797 12.9683 12.6797 14.0887V18.339H10.0142V9.75H12.5747V10.9207H12.6092C12.967 10.2457 13.837 9.53325 15.1367 9.53325C17.8375 9.53325 18.337 11.3108 18.337 13.6245V18.339H18.3362ZM7.00373 8.57475C6.14573 8.57475 5.45648 7.88025 5.45648 7.026C5.45648 6.1725 6.14648 5.47875 7.00373 5.47875C7.85873 5.47875 8.55173 6.1725 8.55173 7.026C8.55173 7.88025 7.85798 8.57475 7.00373 8.57475ZM8.34023 18.339H5.66723V9.75H8.34023V18.339ZM19.6697 3H4.32923C3.59498 3 3.00098 3.5805 3.00098 4.29675V19.7033C3.00098 20.4202 3.59498 21 4.32923 21H19.6675C20.401 21 21.001 20.4202 21.001 19.7033V4.29675C21.001 3.5805 20.401 3 19.6675 3H19.6697Z"/>
+                      </svg>
+                    </div>
+              <input type="text" id="linkedin-url" data-th-field="*{linkedInLink}" placeholder="https://www.linkedin.com/in"
+                class="w-full pl-10 p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-blue-500 focus:border-blue-500">
+            </div>
+          </div>
+  </div>
+</div>
+
+
+            <!-- Checkbox -->
+            <div class="flex items-center">
+              <input id="favorite" type="checkbox" data-th-field="*{favorite}"
+                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm  hover:bg-gray-100 dark:hover:border-gray-500 dark:hover:bg-gray-600 focus:ring-blue-500 dark:focus:ring-blue-600 dark:bg-gray-700 dark:border-gray-600">
+              <label for="favorite" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Add to favorite list</label>
+            </div>
+
+            <!-- Submit Button (Optional) -->
+            <div class="text-center">
+              <button type="submit"
+                class="px-6 py-2 text-white bg-indigo-600 hover:bg-indigo-800 rounded-lg focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+                Save Contact
+              </button>
+            </div>
+
+          </form>
+        </div></div></div></div>
+       <script>
+        console.log("Adding new contact..")
+       </script>
+
+
+  <script th:src="@{'/script/script.js'}"></script>
+  <script th:src="@{'/script/validation.js'}"></script>
+
+</body>
+</html>

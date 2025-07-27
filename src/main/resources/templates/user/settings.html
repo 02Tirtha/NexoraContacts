@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings - Dashboard</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen font-sans text-gray-800 bg-gradient-to-br from-indigo-400 to-purple-500 dark:from-gray-900 dark:to-gray-950 dark:text-white transition-all">
+
+<div class="max-w-7xl mx-auto p-6">
+  <div class="bg-white dark:bg-gray-800 bg-opacity-90 backdrop-blur-md p-8 rounded-xl shadow-lg mb-6 text-center">
+    <h1 class="text-4xl font-bold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent mb-2">⚙️ Settings</h1>
+    <p class="text-gray-600 dark:text-gray-300">Customize your experience and manage your preferences</p>
+  </div>
+
+  <div class="bg-white dark:bg-gray-800 bg-opacity-90 backdrop-blur-md rounded-xl p-6 shadow-lg">
+    <div class="tab-content active" id="appearance">
+      <h2 class="text-2xl font-semibold text-gray-700 dark:text-white border-b pb-2 border-gray-200 dark:border-gray-600 mb-4">Theme & Display</h2>
+
+      <!-- Dark Mode -->
+      <div class="flex justify-between items-center py-4 border-b dark:border-gray-600">
+        <div>
+          <span class="font-medium">Dark Mode</span>
+          <p class="text-sm text-gray-500 dark:text-gray-400">Switch between light and dark themes</p>
+        </div>
+        <div class="relative w-14 h-7 bg-gray-300 rounded-full cursor-pointer" id="darkModeToggle">
+          <div id="darkThumb" class="absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full transition-transform"></div>
+        </div>
+      </div>
+
+      <!-- Font Size -->
+      <div class="mt-4">
+        <label for="fontSize" class="block font-medium mb-1">Font Size</label>
+        <select id="fontSize" class="w-full border bg-gray-300 text-gray-600 border-gray-300 dark:border-gray-600 rounded px-3 py-2">
+          <option value="small">Small</option>
+          <option value="medium" selected>Medium</option>
+          <option value="large">Large</option>
+          <option value="xl">Extra Large</option>
+        </select>
+      </div>
+
+      <!-- Language -->
+      <div class="mt-4">
+        <label for="language" class="block font-medium mb-1">Language</label>
+        <select id="language" class="w-full border bg-gray-300 text-gray-600 border-gray-300 dark:border-gray-600 rounded px-3 py-2">
+          <option value="en" selected>English</option>
+          <option value="hi">हिंदी</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="zh">中文</option>
+          <option value="ja">日本語</option>
+          <option value="ar">العربية</option>
+        </select>
+      </div>
+
+      <div class="flex flex-wrap gap-4 mt-6">
+        <button id="applyBtn" class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium px-4 py-2 rounded shadow">🎨 Apply Theme</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const darkToggle = document.getElementById('darkModeToggle');
+const darkThumb = document.getElementById('darkThumb');
+const fontSizeEl = document.getElementById('fontSize');
+const languageEl = document.getElementById('language');
+const applyBtn = document.getElementById('applyBtn');
+
+document.addEventListener('DOMContentLoaded', () => {
+  const theme = localStorage.getItem('theme') || 'light';
+  const fontSize = localStorage.getItem('fontSize') || 'medium';
+  const language = localStorage.getItem('language') || 'en';
+
+  if (theme === 'dark') {
+    darkThumb.style.transform = 'translateX(28px)';
+    document.documentElement.classList.add('dark');
+  }
+  fontSizeEl.value = fontSize;
+  languageEl.value = language;
+});
+
+// Dark mode toggle
+darkToggle.addEventListener('click', () => {
+  if (document.documentElement.classList.contains('dark')) {
+    document.documentElement.classList.remove('dark');
+    darkThumb.style.transform = 'translateX(0)';
+  } else {
+    document.documentElement.classList.add('dark');
+    darkThumb.style.transform = 'translateX(28px)';
+  }
+});
+
+// Save settings and redirect
+document.getElementById('applyBtn').addEventListener('click', () => {
+  const fontSize = document.getElementById('fontSize').value;  // small/medium/large/xl
+  const language = document.getElementById('language').value;  // en/hi/etc
+  const theme = document.getElementById('darkMode').classList.contains('enabled') ? 'dark' : 'light';
+
+  localStorage.setItem('fontSize', fontSize);
+  localStorage.setItem('language', language);
+  localStorage.setItem('theme', theme);
+
+
+  // Redirect to profile page
+  window.location.href = '/user/profile';
+});
+document.getElementById('darkMode').addEventListener('click', () => {
+  const toggle = document.getElementById('darkMode');
+  toggle.classList.toggle('enabled');
+});
+</script>
+
+</body>
+</html>

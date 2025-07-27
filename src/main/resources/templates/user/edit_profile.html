@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::title}, ~{::#mainContent}, ~{::script}, ~{})}" class="light">
+<head>
+    <title>Edit Profile</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for smooth transitions and initial theme setup */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Animation Keyframes for card fade-in */
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fadeInScale {
+            animation: fadeInScale 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <div class="absolute top-4 right-4 z-50">
+        <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5">
+            <i id="theme-toggle-dark-icon" class="fas fa-moon hidden w-5 h-5"></i>
+            <i id="theme-toggle-light-icon" class="fas fa-sun hidden w-5 h-5"></i>
+        </button>
+    </div>
+
+    <div id="mainContent" class="min-h-screen flex items-center justify-center p-4">
+        <div class="w-full max-w-2xl bg-white dark:bg-gray-800 shadow-xl border border-gray-200 dark:border-gray-700 rounded-xl p-8 animate-fadeInScale">
+
+            <div class="flex justify-start mb-6">
+                <a href="/user/profile"
+                   class="text-gray-500 hover:text-red-600 dark:text-gray-400 dark:hover:text-red-400 text-3xl font-bold transition-all duration-300"
+                   title="Close">
+                    &times;
+                </a>
+            </div>
+
+            <div th:if="${success}" class="mb-6 text-center text-green-700 bg-green-50 dark:bg-green-900/30 border border-green-400 dark:border-green-800 text-sm rounded-lg px-4 py-3 animate-pulse-once">
+                <span th:text="${success}" class="font-medium"></span>
+            </div>
+
+            <h2 class="text-3xl font-extrabold mb-8 text-gray-800 dark:text-white text-center">Edit Profile</h2>
+
+            <form th:action="@{'/user/contacts/edit-profile'}" th:object="${user}" method="post" onsubmit="return validateContactForm()" class="space-y-6">
+
+                <input type="hidden" th:field="*{id}" />
+
+                <div>
+                    <label for="first-name" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">First Name</label>
+                    <input type="text" id="first-name" th:field="*{firstName}" placeholder="Tirtha"
+                           class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
+                                  focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm" />
+                    <span id="error-firstname" class="text-red-500 text-xs mt-1 block"></span>
+                </div>
+
+                <div>
+                    <label for="last-name" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Last Name</label>
+                    <input type="text" id="last-name" th:field="*{lastName}" placeholder="Jhaveri"
+                           class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
+                                  focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm" />
+                    <span id="error-lastname" class="text-red-500 text-xs mt-1 block"></span>
+                </div>
+
+                <div>
+                    <label for="email" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Email</label>
+                    <input type="email" id="email" th:field="*{email}" placeholder="name@example.com"
+                           class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
+                                  focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm" />
+                    <span id="error-email" class="text-red-500 text-xs mt-1 block"></span>
+                </div>
+
+                <div>
+                    <label for="phone" class="block mb-2 text-sm font-semibold text-gray-700 dark:text-gray-300">Phone Number</label>
+                    <input type="text" id="phone" th:field="*{phoneNum}" placeholder="9123456789"
+                           class="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white
+                                  focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200 shadow-sm" />
+                    <span id="error-phone" class="text-red-500 text-xs mt-1 block"></span>
+                </div>
+
+                <div class="text-center pt-4">
+                    <button type="submit"
+                            class="px-8 py-3 text-white bg-indigo-600 hover:bg-indigo-700 
+                                   rounded-full font-bold transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105
+                                   focus:outline-none focus:ring-4 focus:ring-purple-300 dark:focus:ring-indigo-800">
+                        Update Profile
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script th:src="@{'/script/script.js'}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <!-- <script>
+        // Theme toggle logic (consistent with other pages)
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        function applyTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                themeToggleLightIcon.classList.remove('hidden');
+                themeToggleDarkIcon.classList.add('hidden');
+            } else {
+                document.documentElement.classList.remove('dark');
+                themeToggleDarkIcon.classList.remove('hidden');
+                themeToggleLightIcon.classList.add('hidden');
+            }
+        }
+
+        // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            // toggle icons inside button
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            // if set via local storage previously
+            if (localStorage.getItem('color-theme')) {
+                if (localStorage.getItem('color-theme') === 'light') {
+                    applyTheme('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    applyTheme('light');
+                    localStorage.setItem('color-theme', 'light');
+                }
+            } else {
+                // if NOT set via local storage previously
+                if (document.documentElement.classList.contains('dark')) {
+                    applyTheme('light');
+                    localStorage.setItem('color-theme', 'light');
+                } else {
+                    applyTheme('dark');
+                    localStorage.setItem('color-theme', 'dark');
+                }
+            }
+        });
+
+        // Basic client-side validation for demonstration (adapt as needed)
+        function validateContactForm() {
+            let isValid = true;
+
+            const firstName = document.getElementById('first-name');
+            const lastName = document.getElementById('last-name');
+            const email = document.getElementById('email');
+            const phone = document.getElementById('phone');
+
+            const errorFirstName = document.getElementById('error-firstname');
+            const errorLastName = document.getElementById('error-lastname');
+            const errorEmail = document.getElementById('error-email');
+            const errorPhone = document.getElementById('error-phone');
+
+            // Reset errors
+            errorFirstName.textContent = '';
+            errorLastName.textContent = '';
+            errorEmail.textContent = '';
+            errorPhone.textContent = '';
+
+            // First Name validation
+            if (firstName.value.trim() === '') {
+                errorFirstName.textContent = 'First Name is required.';
+                isValid = false;
+            }
+
+            // Last Name validation
+            if (lastName.value.trim() === '') {
+                errorLastName.textContent = 'Last Name is required.';
+                isValid = false;
+            }
+
+            // Email validation
+            if (email.value.trim() === '') {
+                errorEmail.textContent = 'Email is required.';
+                isValid = false;
+            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+                errorEmail.textContent = 'Invalid email format.';
+                isValid = false;
+            }
+
+            // Phone validation (simple example)
+            if (phone.value.trim() === '') {
+                errorPhone.textContent = 'Phone Number is required.';
+                isValid = false;
+            } else if (!/^\d{10}$/.test(phone.value)) { // Assumes 10-digit number
+                errorPhone.textContent = 'Phone Number must be 10 digits.';
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        console.log("Edit Profile Page Loaded");
+    </script> -->
+</body>
+</html>

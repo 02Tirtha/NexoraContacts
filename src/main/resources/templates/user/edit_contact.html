@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base::parent(~{::title},~{::#mainContent},~{::script},~{})}">
+<head>
+    <title th:text="${name} + ' | Edit Contact'">Edit Contact</title>
+</head>
+<body>
+<div id="mainContent" class="transition-all duration-300 p-4">
+  <div class="pt-20 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-4xl px-4">
+      <div class="bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-none rounded-lg p-8">
+
+        <!-- Close Button -->
+        <div class="flex justify-start mb-4">
+          <a href="/user/contacts"
+            class="text-gray-400 hover:text-red-600 text-2xl font-bold transition duration-200"
+            title="Close">
+            &times;
+          </a>
+        </div>
+
+        <div th:if="${success}" class="mb-4 text-center text-green-700 bg-green-100 border border-green-400 text-sm rounded-lg px-4 py-3 dark:bg-green-900 dark:text-green-200 dark:border-green-800">
+          <span th:text="${success}"></span>
+        </div>
+
+        <h2 class="text-2xl font-bold text-center mb-8">Edit Contact</h2>
+
+        <form th:action="@{'/user/contacts/edit'}" th:object="${contact}" method="post" onsubmit="return validateContactForm()" class="space-y-6">
+
+          <input type="hidden" th:field="*{id}" />
+
+          <!-- Name -->
+          <div>
+            <label for="contact-name" class="block mb-2 font-semibold">Contact Name</label>
+            <div class="flex">
+              <span class="inline-flex items-center px-3 bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-300 border border-r-0 border-gray-300 dark:border-gray-600 rounded-l-md">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                </svg>
+              </span>
+              <input type="text" id="contact-name" th:field="*{name}" placeholder="Elon Musk" class="w-full rounded-r-md border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white p-2.5 text-sm" />
+            </div>
+            <span id="error-name" class="text-red-500 text-sm mt-1"></span>
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="contact-email" class="block mb-2 font-semibold">Contact Email</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 16">
+                  <path d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"/>
+                  <path d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"/>
+                </svg>
+              </div>
+              <input type="email" id="contact-email" th:field="*{email}" placeholder="name@example.com" class="w-full pl-10 p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white" />
+            </div>
+            <span id="error-email" class="text-red-500 text-sm mt-1"></span>
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label for="contact-phone" class="block mb-2 font-semibold">Contact Phone</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <input type="text" id="contact-phone" th:field="*{phoneNum}" placeholder="9123456789" class="w-full pl-10 p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white" />
+            </div>
+            <span id="error-phone" class="text-red-500 text-sm mt-1"></span>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <label for="address" class="block mb-2 font-semibold">Address</label>
+            <textarea id="address" rows="3" th:field="*{address}" placeholder="Enter full address..." class="w-full p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"></textarea>
+            <span id="error-address" class="text-red-500 text-sm mt-1"></span>
+          </div>
+
+          <!-- Web and LinkedIn -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label for="webLink" class="block mb-2 font-semibold">Facebook / Web Link</label>
+              <input type="text" id="webLink" th:field="*{webLink}" placeholder="https://facebook.com/profile" class="w-full p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white" />
+            </div>
+            <div>
+              <label for="linkedInLink" class="block mb-2 font-semibold">LinkedIn</label>
+              <input type="text" id="linkedInLink" th:field="*{linkedInLink}" placeholder="https://linkedin.com/in/profile" class="w-full p-2.5 text-sm border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white" />
+            </div>
+          </div>
+
+          <!-- Favorite -->
+          <div class="flex items-center">
+            <input id="favorite" type="checkbox" th:field="*{favorite}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded dark:bg-gray-700 dark:border-gray-600" />
+            <label for="favorite" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Mark as Favorite</label>
+          </div>
+
+          <!-- Submit -->
+          <div class="text-center">
+            <button type="submit" class="px-6 py-2 text-white bg-indigo-600 hover:bg-indigo-800 rounded-lg focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800">
+              Update Contact
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script th:src="@{'/script/script.js'}"></script>
+<script th:src="@{'/script/contact.js'}"></script>
+<script th:src="@{'/script/validation.js'}"></script>
+
+</body>
+</html>
