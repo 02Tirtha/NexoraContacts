@@ -30,7 +30,8 @@ Nexora is a **Java Spring Boot Full Stack Web Application** for managing persona
 | About | ![About](screenshots/About.png) |
 | Contact Us | ![Contact Us](screenshots/ContactUs.png) |
 | Services | ![Services](screenshots/Services.png) |
-| OAuth Login | ![Login](screenshots/Login.png) |
+| Standard Login | ![Login](screenshots/Login.png) |
+| OAuth Login | ![Login](screenshots/SigninWithGoogle.png) |
 | Signup | ![Signup](screenshots/SignUp.png) |
 | Dashboard | ![Dashboard](screenshots/Dashboard.png) |
 | Profile | ![Profile](screenshots/Profile.png) |
@@ -54,6 +55,7 @@ Nexora is a **Java Spring Boot Full Stack Web Application** for managing persona
 | Contact List (NextPage) | ![Contact 1](screenshots/Contact1.png) |
 | View Contact | ![Contact View](screenshots/ContactView.png) |
 | Update Contact | ![Update](screenshots/UpdateContact.png) |
+| Delete Contact | ![Delete](screenshots/Delete_Contact.png) |
 | Search by Name | ![Search Name](screenshots/Search_name.png) |
 | Search by Phone | ![Search Phone](screenshots/Search_phone.png) |
 | Search by Email | ![Search Email](screenshots/Search_Email.png) |
